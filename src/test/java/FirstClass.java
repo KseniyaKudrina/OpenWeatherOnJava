@@ -1,5 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -66,6 +68,29 @@ public class FirstClass extends BaseTest {
         getDriver().close();
         //Переключаемся назад к первоначальному окну
         getDriver().switchTo().window(winHandleBefore);
-
     }
+    @Test
+    public void testChangeBGColor_DifferentWeatherButton() throws InterruptedException {
+        String url = "https://openweathermap.org/";
+
+        getDriver().get(url);
+        getDriver().manage().window().maximize();
+        Thread.sleep(8000);
+
+        WebElement differentWeatherButton = getDriver().findElement(By.xpath(
+                "//div[@id='weather-widget']//span[@class='control-el owm-switch']"
+        ));
+        Actions builder = new Actions(getDriver());
+        Action mouseOverHome = builder
+                .moveToElement(differentWeatherButton)
+                .build();
+        String bgColorAfter = differentWeatherButton.getCssValue("background-color");
+
+        mouseOverHome.perform();
+        String bgColorAfterBefore = differentWeatherButton.getCssValue("background-color");
+
+        Assert.assertNotEquals(bgColorAfter,bgColorAfterBefore);
+    }
+
+
 }
