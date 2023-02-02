@@ -2,10 +2,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import runner.BaseTest;
+
+import java.time.Duration;
 
 public class FirstClass extends BaseTest {
 
@@ -16,7 +21,11 @@ public class FirstClass extends BaseTest {
         String nameCopyright = "© 2012 — 2023 OpenWeather ® All rights reserved";
 
         getDriver().get(url);
-        Thread.sleep(5000);
+        //Thread.sleep(5000);
+        //WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        getWait().until(ExpectedConditions.
+                visibilityOfElementLocated(
+                        By.xpath("//div[@class = 'horizontal-section my-5']//span[contains(text(), '© 2012 — 2023 OpenWeather ® All rights reserved')]")));
 
         WebElement footerNameCompany = getDriver().findElement(
                 By.xpath("//div[@class = 'horizontal-section my-5']//span[contains(text(), '© 2012 — 2023 OpenWeather ® All rights reserved')]")
@@ -57,14 +66,7 @@ public class FirstClass extends BaseTest {
 
         Thread.sleep(3000);
 
-       /* WebElement SubjectField = driver.findElement(
-                By.xpath("//div[@class='col-sm-8']/select[@id='question_form_subject']"));
-        Thread.sleep(2000);
-        SubjectField.click();
-
-        Thread.sleep(3000); */
-
-        //Закрываем новое окно, если оно больше не нужно
+        //Закрываем новое окно
         getDriver().close();
         //Переключаемся назад к первоначальному окну
         getDriver().switchTo().window(winHandleBefore);
