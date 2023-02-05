@@ -25,9 +25,21 @@ public abstract class BaseTest {
         return driver;
     }
 
-    protected WebDriverWait getWait(){
+    protected WebDriverWait getWait20(){
         if(webDriverWait == null){
             webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        }
+        return webDriverWait;
+    }
+    protected WebDriverWait getWait10(){
+        if(webDriverWait == null){
+            webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        }
+        return webDriverWait;
+    }
+    protected WebDriverWait getWait30(){
+        if(webDriverWait == null){
+            webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         }
         return webDriverWait;
     }

@@ -1,8 +1,8 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,50 +10,56 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import runner.BaseTest;
 
-import java.time.Duration;
-
 public class FirstClass extends BaseTest {
-
-    @Test
-    public void testOpenPage() throws InterruptedException {
-
-        String url = "https://openweathermap.org/";
-        String nameCopyright = "© 2012 — 2023 OpenWeather ® All rights reserved";
-
-        getDriver().get(url);
-        //Thread.sleep(5000);
-        //WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-        getWait().until(ExpectedConditions.
+    final static String BASE_URL = "https://openweathermap.org/";
+    final static By FOOTER_NAME_COMPANY = By.
+            xpath("//div[@class = 'horizontal-section my-5']//span[contains(text(), '© 2012 — 2023 OpenWeather ® All rights reserved')]");
+    final static By SUPPORT_DROPDOWN = By.id("support-dropdown");
+    final static By ASC_A_QUESTION_MENU_DROPDOWN = By.xpath("//li[@class='with-dropdown']//a[contains(@href,'https://home.openweathermap.org/questions')]");
+    final static By DIFFERENT_WEATHER_BUTTON = By.xpath("//div[@id='weather-widget']//span[@class='control-el owm-switch']");
+    private void openBaseURL(){
+        getDriver().get(BASE_URL);
+    }
+    private void waitForGrayFrameDissapeared(){
+        getWait30().until(ExpectedConditions.
                 visibilityOfElementLocated(
                         By.xpath("//div[@class = 'horizontal-section my-5']//span[contains(text(), '© 2012 — 2023 OpenWeather ® All rights reserved')]")));
+    }
+    private String getText(By by, WebDriver driver){
+        return driver.findElement(by).getText();
+    }
+    private void click(By by, WebDriverWait wait){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        wait.until(ExpectedConditions.elementToBeClickable(by)).click();
+    }
+    private void waitElementToBeVisible(By by, WebDriverWait wait){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
 
-        WebElement footerNameCompany = getDriver().findElement(
-                By.xpath("//div[@class = 'horizontal-section my-5']//span[contains(text(), '© 2012 — 2023 OpenWeather ® All rights reserved')]")
-        );
 
-        Assert.assertEquals(footerNameCompany.getText(),nameCopyright);
+
+    @Test
+    public void testOpenPage(){
+
+        String nameCopyright = "© 2012 — 2023 OpenWeather ® All rights reserved";
+
+        openBaseURL();
+        waitForGrayFrameDissapeared();
+
+        Assert.assertEquals(getText(FOOTER_NAME_COMPANY, getDriver()),nameCopyright);
     }
 
     @Test
-    public void testSelectAscAQuestion() throws InterruptedException{
+    public void testSelectAscAQuestion() throws InterruptedException {
 
-        String url = "https://openweathermap.org/";
-
-        getDriver().get(url);
-        getDriver().manage().window().maximize();
+        openBaseURL();
         Thread.sleep(8000);
+        waitForGrayFrameDissapeared();
+        waitElementToBeVisible(SUPPORT_DROPDOWN, getWait30());
+        click(SUPPORT_DROPDOWN, getWait30());
+        click(ASC_A_QUESTION_MENU_DROPDOWN, getWait30());
 
-        WebElement SupportDropdown = getDriver().findElement(By.xpath("//div[@id = 'support-dropdown']"));
-        SupportDropdown.click();
-        Thread.sleep(2000);
-
-        //Запоминаем основное окно
         String winHandleBefore = getDriver().getWindowHandle();
-
-        WebElement AscAQuestionMenuDropdown = getDriver().findElement(
-                By.xpath("//li[@class='with-dropdown']//a[contains(@href,'https://home.openweathermap.org/questions')]"));
-        AscAQuestionMenuDropdown.click();
-        Thread.sleep(7000);
 
         //Переключаемся на новое окно
         for(String winHandle : getDriver().getWindowHandles()){
@@ -61,10 +67,7 @@ public class FirstClass extends BaseTest {
         }
 
         Select SubjectField = new Select(getDriver().findElement(By.xpath("//div[@class='col-sm-8']/select[@id='question_form_subject']")));
-        Thread.sleep(2000);
         SubjectField.selectByIndex(2);
-
-        Thread.sleep(3000);
 
         //Закрываем новое окно
         getDriver().close();
