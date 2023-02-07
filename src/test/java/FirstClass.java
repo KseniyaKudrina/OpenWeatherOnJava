@@ -97,7 +97,7 @@ public class FirstClass extends BaseTest {
 
         Assert.assertNotEquals(bgColorAfter,bgColorAfterBefore);
     }
-    @Test
+    @Test //кликнуть по PRICING_BUTTON и подтвердить переход на другую вкладку
     public void testOpenNewPage_ClickHowToBuy(){
         String homePageTitle = "Сurrent weather and forecast";
         openBaseURL();
@@ -106,8 +106,6 @@ public class FirstClass extends BaseTest {
         click(PRICING_BUTTON, getWait10());
 
         Assert.assertNotEquals(homePageTitle,getDriver().getTitle());
-
-
 
     }
 
