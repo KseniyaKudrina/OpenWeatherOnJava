@@ -36,7 +36,7 @@ public abstract class BaseTest {
     @AfterMethod
     protected void afterMethod(Method method, ITestResult result) {
         Reporter.log(ReportUtils.getTestStatistics(method, result));
-        driver.quit();
+        getDriver().quit();
         webDriverWait = null;
     }
 
@@ -59,24 +59,24 @@ public abstract class BaseTest {
     }
     public void openBaseURL(){
 
-        driver.get(BASE_URL);
+        getDriver().get(BASE_URL);
         waitForGrayContainerDissapeared();
     }
     public void waitForGrayContainerDissapeared(){
-        webDriverWait.until(ExpectedConditions.
+        getWait10().until(ExpectedConditions.
                 invisibilityOfElementLocated(
                         By.className("own-loader-container")));
     }
     public String getText(By by){
 
-        return driver.findElement(by).getText();
+        return getDriver().findElement(by).getText();
     }
     public void click(By by){
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(by));
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(by)).click();
+        getWait10().until(ExpectedConditions.visibilityOfElementLocated(by));
+        getWait10().until(ExpectedConditions.elementToBeClickable(by)).click();
     }
     public void waitElementToBeVisible(By by){
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        getWait10().until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
 }
