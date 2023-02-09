@@ -1,4 +1,4 @@
-package runner;
+package Utils;
 
 public class TestUtils {
     private static final String BASE_URL = "https://openweathermap.org/";

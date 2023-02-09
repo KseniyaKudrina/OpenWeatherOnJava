@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import runner.BaseTest;
+import Base.BaseTest;
 
 public class FirstClass extends BaseTest {
     final static String BASE_URL = "https://openweathermap.org/";
@@ -18,6 +18,7 @@ public class FirstClass extends BaseTest {
     final static By ASC_A_QUESTION_MENU_DROPDOWN = By.xpath("//li[@class='with-dropdown']//a[contains(@href,'https://home.openweathermap.org/questions')]");
     final static By DIFFERENT_WEATHER_BUTTON = By.xpath("//div[@id='weather-widget']//span[@class='control-el owm-switch']");
     final static By PRICING_BUTTON = By.linkText("Pricing");
+    /*
     private void openBaseURL(){
         getDriver().get(BASE_URL);
     }
@@ -36,6 +37,7 @@ public class FirstClass extends BaseTest {
     private void waitElementToBeVisible(By by, WebDriverWait wait){
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
+    */
 
 
 
@@ -45,19 +47,17 @@ public class FirstClass extends BaseTest {
         String nameCopyright = "© 2012 — 2023 OpenWeather ® All rights reserved";
 
         openBaseURL();
-        waitForGrayFrameDissapeared();
 
-        Assert.assertEquals(getText(FOOTER_NAME_COMPANY, getDriver()),nameCopyright);
+        Assert.assertEquals(getText(FOOTER_NAME_COMPANY),nameCopyright);
     }
 
     @Test
     public void testSelectAscAQuestion() throws InterruptedException {
 
         openBaseURL();
-        waitForGrayFrameDissapeared();
-        waitElementToBeVisible(SUPPORT_DROPDOWN, getWait10());
-        click(SUPPORT_DROPDOWN, getWait10());
-        click(ASC_A_QUESTION_MENU_DROPDOWN, getWait10());
+        waitElementToBeVisible(SUPPORT_DROPDOWN);
+        click(SUPPORT_DROPDOWN);
+        click(ASC_A_QUESTION_MENU_DROPDOWN);
 
         String winHandleBefore = getDriver().getWindowHandle();
 
@@ -101,9 +101,8 @@ public class FirstClass extends BaseTest {
     public void testOpenNewPage_ClickHowToBuy(){
         String homePageTitle = "Сurrent weather and forecast";
         openBaseURL();
-        waitForGrayFrameDissapeared();
-        waitElementToBeVisible(PRICING_BUTTON, getWait10());
-        click(PRICING_BUTTON, getWait10());
+        waitElementToBeVisible(PRICING_BUTTON);
+        click(PRICING_BUTTON);
 
         Assert.assertNotEquals(homePageTitle,getDriver().getTitle());
 

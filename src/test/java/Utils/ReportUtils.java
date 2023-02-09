@@ -1,5 +1,6 @@
-package runner;
+package Utils;
 
+import Utils.TestUtils;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 

@@ -1,6 +1,10 @@
-package runner;
+package Base;
 
+import Utils.ReportUtils;
+import Utils.TestUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
@@ -14,6 +18,8 @@ public abstract class BaseTest {
 
     private WebDriver driver;
     private WebDriverWait webDriverWait;
+    private WebDriverWait webDriverWait20;
+    final String BASE_URL = TestUtils.getBaseUrl();
 
     @BeforeSuite
     protected void beforeSuite (ITestContext context){
@@ -31,17 +37,19 @@ public abstract class BaseTest {
     protected void afterMethod(Method method, ITestResult result) {
         Reporter.log(ReportUtils.getTestStatistics(method, result));
         driver.quit();
+        webDriverWait = null;
     }
 
     protected WebDriver getDriver() {
+
         return driver;
     }
 
     protected WebDriverWait getWait20(){
-        if(webDriverWait == null){
-            webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        if(webDriverWait20 == null){
+            webDriverWait20 = new WebDriverWait(driver, Duration.ofSeconds(20));
         }
-        return webDriverWait;
+        return webDriverWait20;
     }
     protected WebDriverWait getWait10(){
         if(webDriverWait == null){
@@ -49,10 +57,26 @@ public abstract class BaseTest {
         }
         return webDriverWait;
     }
-    protected WebDriverWait getWait30(){
-        if(webDriverWait == null){
-            webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        }
-        return webDriverWait;
+    public void openBaseURL(){
+
+        driver.get(BASE_URL);
+        waitForGrayContainerDissapeared();
     }
+    public void waitForGrayContainerDissapeared(){
+        webDriverWait.until(ExpectedConditions.
+                invisibilityOfElementLocated(
+                        By.className("own-loader-container")));
+    }
+    public String getText(By by){
+
+        return driver.findElement(by).getText();
+    }
+    public void click(By by){
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(by)).click();
+    }
+    public void waitElementToBeVisible(By by){
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
 }
