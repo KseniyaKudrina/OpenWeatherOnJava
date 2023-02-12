@@ -99,9 +99,7 @@ public class FirstClass extends BaseTest {
         }
         System.out.println(textElements);
         list.get(3).click();
-
-
-
+        
     }
 
 
