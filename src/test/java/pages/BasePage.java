@@ -1,8 +1,11 @@
-package Pages;
+package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -31,6 +34,23 @@ public abstract class BasePage {
             actions = new Actions(driver);
         }
         return  actions;
+    }
+    protected String getText(WebElement element){
+        if(!element.getText().isEmpty()){
+            getWait().until(ExpectedConditions.visibilityOf(element));
+        }
+
+        return element.getText();
+    }
+    protected void click(WebElement element){
+        getWait().until(ExpectedConditions.visibilityOf(element));
+        getWait().until(ExpectedConditions.elementToBeClickable(element)).click();
+    }
+    protected void input(String text, WebElement element){
+        element.sendKeys();
+    }
+    protected void waitElementToBeVisible(WebElement element){
+        getWait().until(ExpectedConditions.visibilityOf(element));
     }
 
 }

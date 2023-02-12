@@ -1,7 +1,7 @@
-package Base;
+package base;
 
-import Utils.ReportUtils;
-import Utils.TestUtils;
+import utils.ReportUtils;
+import utils.TestUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -61,9 +61,9 @@ public abstract class BaseTest {
     public void openBaseURL(){
 
         getDriver().get(BASE_URL);
-        waitForGrayContainerDissapeared();
+        waitForGrayContainerDissappeared();
     }
-    public void waitForGrayContainerDissapeared(){
+    public void waitForGrayContainerDissappeared(){
         getWait10().until(ExpectedConditions.
                 invisibilityOfElementLocated(
                         By.className("own-loader-container")));
