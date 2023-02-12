@@ -1,5 +1,6 @@
 package base;
 
+import pages.MainPage;
 import utils.ReportUtils;
 import utils.TestUtils;
 import org.openqa.selenium.By;
@@ -58,10 +59,11 @@ public abstract class BaseTest {
         }
         return webDriverWait;
     }
-    public void openBaseURL(){
+    public MainPage openBaseURL(){
 
         getDriver().get(BASE_URL);
         waitForGrayContainerDissappeared();
+        return new MainPage(getDriver());
     }
     public void waitForGrayContainerDissappeared(){
         getWait10().until(ExpectedConditions.
@@ -78,6 +80,12 @@ public abstract class BaseTest {
     }
     public void waitElementToBeVisible(By by){
         getWait10().until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+    public String getExternalPageTitle(){
+        return getDriver().getTitle();
+    }
+    public String getExternalPageURL(){
+        return getDriver().getCurrentUrl();
     }
 
 }
