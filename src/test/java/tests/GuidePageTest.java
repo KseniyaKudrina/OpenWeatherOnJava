@@ -4,6 +4,7 @@ import base.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.GuidePage;
 import pages.TopMenuPage;
@@ -13,8 +14,9 @@ import java.util.List;
 
 public class GuidePageTest extends BaseTest {
 
-    @Test
+    @Test //количество кнопок "Learn more" на странице Guide должно == 5
     public void testCountButtonsLearnMore(){
+        final int countButtonsLearnMore = 5;
         openBaseURL();
         click(By.xpath("//div[@id='desktop-menu']//a[text()='Guide']"));
         //TopMenuPage topMenuPage = new TopMenuPage(getDriver());
@@ -29,7 +31,7 @@ public class GuidePageTest extends BaseTest {
             textElements.add(element.getText());
             }
         }
-        System.out.println(count);
+        Assert.assertEquals(countButtonsLearnMore, count);
 
 
     }
