@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class MainPage extends FooterMenuPage{
     @FindBy(className = "own-loader-container")
     private WebElement grayContainer;
-
     @FindBy(xpath = "//div[@class = 'horizontal-section my-5']//span[contains(text(), '© 2012 — 2023 OpenWeather ® All rights reserved')]")
     private WebElement footerNameCompany;
 

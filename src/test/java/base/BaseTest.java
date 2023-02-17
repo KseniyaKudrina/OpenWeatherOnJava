@@ -1,5 +1,6 @@
 package base;
 
+import org.openqa.selenium.WebElement;
 import pages.MainPage;
 import utils.ReportUtils;
 import utils.TestUtils;
@@ -14,6 +15,8 @@ import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class BaseTest {
 
@@ -87,5 +90,11 @@ public abstract class BaseTest {
     public String getExternalPageURL(){
         return getDriver().getCurrentUrl();
     }
+    public List<WebElement> webElementList(String text){
+        List<WebElement> list = driver.findElements(By.xpath(text));
+        return list;
+    }
+
+
 
 }

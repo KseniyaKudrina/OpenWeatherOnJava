@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public abstract class BasePage {
     private WebDriver driver;
@@ -45,6 +46,10 @@ public abstract class BasePage {
     protected void click(WebElement element){
         getWait().until(ExpectedConditions.visibilityOf(element));
         getWait().until(ExpectedConditions.elementToBeClickable(element)).click();
+    }
+    protected void clickBy(By by){
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(by));
+        getWait().until(ExpectedConditions.elementToBeClickable(by)).click();
     }
     protected void input(String text, WebElement element){
         element.sendKeys();
