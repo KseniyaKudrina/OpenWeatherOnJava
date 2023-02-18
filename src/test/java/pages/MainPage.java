@@ -33,8 +33,15 @@ public class MainPage extends FooterMenuPage {
     @FindBy(xpath = "//div[@id='desktop-menu']//li")
     private WebElement sectionsTopMenu;
 
+    @FindBy(xpath = "//div[text()='Imperial: °F, mph']")
+    private WebElement temperatureUnitsF;
 
-    final By ASC_A_QUESTION_MENU_DROPDOWN = By.xpath("//li[@class='with-dropdown']//a[contains(@href,'https://home.openweathermap.org/questions')]");
+    @FindBy(xpath = "//span[@class='heading']")
+    private WebElement unitsF;
+
+
+    final By ASC_A_QUESTION_MENU_DROPDOWN = By.
+            xpath("//li[@class='with-dropdown']//a[contains(@href,'https://home.openweathermap.org/questions')]");
     final By PRICING_BUTTON = By.linkText("Pricing");
 
 
@@ -55,7 +62,7 @@ public class MainPage extends FooterMenuPage {
        input(text, __ элемент __); нужен элемент для ввода текста
     } */
 
-    public int getWebElementsTopMenu() {
+    public int getCountWebElementsTopMenu() {
         List<WebElement> list = getDriver().
                 findElements(By.xpath("//div[@id='desktop-menu']//ul//li"));
         List<String> textElements = new ArrayList<>();
@@ -66,4 +73,12 @@ public class MainPage extends FooterMenuPage {
             }
         return count;
     }
+    public void clickTemperatureUnits(){
+        click(temperatureUnitsF);
+    }
+    public String getTextWait() {
+        getWait().until(ExpectedConditions.elementToBeClickable(unitsF));
+        return getText(unitsF);
+    }
+
 }

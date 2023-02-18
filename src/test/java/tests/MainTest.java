@@ -19,12 +19,24 @@ public class MainTest extends BaseTest {
 
         Assert.assertEquals(mainPage.getTextName(),nameCopyright);
     }
-    @Test
+    @Test // количество разделов TopMenu на главной странице должно == 15
     public void testCountTopMenuTitles(){
         int countTopMenuTitles = 15;
         openBaseURL();
         MainPage mainPage = new MainPage(getDriver());
-        Assert.assertEquals(mainPage.getWebElementsTopMenu(), countTopMenuTitles);
+
+        Assert.assertEquals(mainPage.getCountWebElementsTopMenu(), countTopMenuTitles);
+
+    }
+    @Test // при нажатии на кнопку меняются единицы измерения температуры
+    public void testChangeUnitsOfTemperature(){
+        String temperatureUnits = "F";
+        openBaseURL();
+        MainPage mainPage = new MainPage(getDriver());
+        mainPage.clickTemperatureUnits();
+        mainPage.getTextWait();
+
+        Assert.assertTrue(mainPage.getTextWait().contains(temperatureUnits));
 
     }
 
