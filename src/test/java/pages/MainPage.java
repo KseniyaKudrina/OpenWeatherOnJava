@@ -1,10 +1,13 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +41,9 @@ public class MainPage extends FooterMenuPage {
 
     @FindBy(xpath = "//span[@class='heading']")
     private WebElement unitsF;
+
+    @FindBy(xpath = "//div[@class='section-content']//a[text()='Privacy Policy']")
+    private WebElement privacyPolicyFooterMenu;
 
 
     final By ASC_A_QUESTION_MENU_DROPDOWN = By.
@@ -79,6 +85,39 @@ public class MainPage extends FooterMenuPage {
     public String getTextWait() {
         getWait().until(ExpectedConditions.elementToBeClickable(unitsF));
         return getText(unitsF);
+    }
+    public String getCurrentURL() {
+        return getDriver().getCurrentUrl();
+    }
+    public MainPage moveToElement() {
+        Actions action = new Actions(getDriver());
+        action.moveToElement(privacyPolicyFooterMenu).build().perform();
+        return new MainPage(getDriver());
+    }
+    public void clickPrivacyPolicy(){
+        getWait().until(ExpectedConditions.visibilityOf(privacyPolicyFooterMenu));
+        click(privacyPolicyFooterMenu);
+    }
+
+    public void switchToExternalPage(){
+        String winHandleBefore = getDriver().getWindowHandle();
+        //Переключаемся на новое окно
+        for(String winHandle : getDriver().getWindowHandles()){
+            getDriver().switchTo().window(winHandle);
+        }
+    }
+    public String getExternalPageURL(){
+        return getDriver().getCurrentUrl();
+    }
+
+    public MainPage scrollToPageBottom() {
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+        return this;
+    }
+    public String getExternalPageTitle(){
+        return getDriver().getTitle();
     }
 
 }
