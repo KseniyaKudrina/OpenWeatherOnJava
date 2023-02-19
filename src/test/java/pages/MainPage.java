@@ -45,10 +45,25 @@ public class MainPage extends FooterMenuPage {
     @FindBy(xpath = "//div[@class='section-content']//a[text()='Privacy Policy']")
     private WebElement privacyPolicyFooterMenu;
 
+    @FindBy(xpath = "//div[@id = 'weather-widget']//input[@placeholder = 'Search city']")
+    private WebElement searchCityField;
 
-    final By ASC_A_QUESTION_MENU_DROPDOWN = By.
+    @FindBy(xpath = "//div[@id = 'weather-widget']//button[@type = 'submit']")
+    private WebElement searchButton;
+    @FindBy(className = "search-dropdown-menu")
+    private WebElement searchDropdownMenu;
+
+    @FindBy(xpath = "//ul[@class = 'search-dropdown-menu']/li/span[text() = 'Paris, FR ']")
+    private WebElement parisFRChoiceInDropdownMenu;
+
+    @FindBy(xpath = "//div[@id = 'weather-widget']//h2")
+    private WebElement h2CityCountryHeader;
+
+
+
+    /*final By ASC_A_QUESTION_MENU_DROPDOWN = By.
             xpath("//li[@class='with-dropdown']//a[contains(@href,'https://home.openweathermap.org/questions')]");
-    final By PRICING_BUTTON = By.linkText("Pricing");
+    final By PRICING_BUTTON = By.linkText("Pricing");*/
 
 
     public MainPage(WebDriver driver) {
@@ -64,9 +79,11 @@ public class MainPage extends FooterMenuPage {
     public String getTextName() {
         return getText(footerNameCompany);
     }
-   /*public void inputSearchCriteria(String text){
-       input(text, __ элемент __); нужен элемент для ввода текста
-    } */
+    public MainPage inputSearchCriteria(String text) {
+        searchCityField.sendKeys(text);
+
+           return this;
+    }
 
     public int getCountWebElementsTopMenu() {
         List<WebElement> list = getDriver().
@@ -118,6 +135,27 @@ public class MainPage extends FooterMenuPage {
     }
     public String getExternalPageTitle(){
         return getDriver().getTitle();
+    }
+    public void clickSearchCityField(){
+        click(searchCityField);
+    }
+    public void clickSearchButton(){
+        click(searchButton);
+    }
+    public MainPage clickParisInDropDownList() {
+        getWait().until(ExpectedConditions.visibilityOf(searchDropdownMenu));
+        click(parisFRChoiceInDropdownMenu);
+
+        return this;
+    }
+    public MainPage waitForCityCountryNameChanged(String oldText) {
+        waitTextToBeChanged(h2CityCountryHeader, oldText);
+
+        return this;
+    }
+    public String getCityCountryName() {
+
+        return getText(h2CityCountryHeader);
     }
 
 }

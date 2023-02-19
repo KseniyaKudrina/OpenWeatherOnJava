@@ -37,6 +37,25 @@ public class MainTest extends BaseTest {
         mainPage.getTextWait();
 
         Assert.assertTrue(mainPage.getTextWait().contains(temperatureUnits));
+    }
+    @Test
+    public void testH2Header_WhenSearchingCityCountry() {
+        final String cityName = "Paris";
+        final String expectedCityCountryNames = "Paris, FR";
+
+        openBaseURL();
+        MainPage mainPage = new MainPage(getDriver());
+
+        final String oldCityCountryName = mainPage.getCityCountryName();
+
+        mainPage.clickSearchCityField();
+        mainPage.inputSearchCriteria(cityName);
+        mainPage.clickSearchButton();
+        mainPage.clickParisInDropDownList();
+        mainPage.waitForCityCountryNameChanged(oldCityCountryName);
+
+        String newCityCountryNames = mainPage.getCityCountryName();
+        Assert.assertEquals(newCityCountryNames, expectedCityCountryNames);
 
     }
 

@@ -58,4 +58,11 @@ public abstract class BasePage {
         getWait().until(ExpectedConditions.visibilityOf(element));
     }
 
+    protected void waitTextToBeChanged(WebElement element, String text) {
+        getWait().until(ExpectedConditions
+                .not(ExpectedConditions.textToBePresentInElement(element, text)));
+    }
+
+
+
 }

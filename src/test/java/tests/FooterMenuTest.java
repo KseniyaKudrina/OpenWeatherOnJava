@@ -23,8 +23,6 @@ public class FooterMenuTest extends BaseTest {
         Assert.assertNotEquals(mainPage.getExternalPageURL(),oldURL);
         Assert.assertEquals(getExternalPageURL(),expectedURL);
         Assert.assertNotEquals(getExternalPageTitle(),basePageTitle);
-
-
-
     }
+
 }
