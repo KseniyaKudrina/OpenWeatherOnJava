@@ -59,6 +59,10 @@ public class MainPage extends FooterMenuPage {
     @FindBy(xpath = "//div[@id = 'weather-widget']//h2")
     private WebElement h2CityCountryHeader;
 
+    @FindBy(xpath = "//div[@class='social']//img[@src='/themes/openweathermap/assets/img/owm_icons/icon_github.png']")
+    private WebElement gitIconFooterMenu;
+
+
 
 
     /*final By ASC_A_QUESTION_MENU_DROPDOWN = By.
@@ -114,6 +118,10 @@ public class MainPage extends FooterMenuPage {
     public void clickPrivacyPolicy(){
         getWait().until(ExpectedConditions.visibilityOf(privacyPolicyFooterMenu));
         click(privacyPolicyFooterMenu);
+    }
+    public void clickGitIcon(){
+        getWait().until(ExpectedConditions.visibilityOf(gitIconFooterMenu));
+        click(gitIconFooterMenu);
     }
 
     public void switchToExternalPage(){

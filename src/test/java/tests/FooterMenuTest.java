@@ -7,7 +7,7 @@ import pages.FooterMenuPage;
 import pages.MainPage;
 
 public class FooterMenuTest extends BaseTest {
-    @Test
+    @Test //навигационный тест - подтверждение перехода на PrivacyPolicy
     public void testPrivacyPolicyFooterLinkNavigatesToPrivacyPolicyWeb(){
         final String basePageTitle = "Сurrent weather and forecast - OpenWeatherMap";
         final String expectedURL = "https://openweather.co.uk/privacy-policy";
@@ -24,5 +24,25 @@ public class FooterMenuTest extends BaseTest {
         Assert.assertEquals(getExternalPageURL(),expectedURL);
         Assert.assertNotEquals(getExternalPageTitle(),basePageTitle);
     }
+    @Test //навигационный тест - подтверждение перехода на Git
+    public void testIconGitFooterLinkNavigatesToGitWeb(){
+        final String basePageTitle = "Сurrent weather and forecast - OpenWeatherMap";
+        final String expectedURL = "https://github.com/search?q=openweathermap&ref=cmdform";
+
+        final String oldURL = openBaseURL().getCurrentURL();
+
+        openBaseURL();
+        MainPage mainPage = new MainPage(getDriver());
+        mainPage
+                .scrollToPageBottom()
+                .clickGitIcon();
+        mainPage.switchToExternalPage();
+
+        Assert.assertNotEquals(mainPage.getExternalPageURL(),oldURL);
+        Assert.assertEquals(getExternalPageURL(),expectedURL);
+        Assert.assertNotEquals(getExternalPageTitle(),basePageTitle);
+
+    }
+
 
 }

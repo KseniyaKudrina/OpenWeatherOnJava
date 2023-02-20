@@ -38,7 +38,7 @@ public class MainTest extends BaseTest {
 
         Assert.assertTrue(mainPage.getTextWait().contains(temperatureUnits));
     }
-    @Test
+    @Test // ввести в поле поиска название города и нажать "поиск", убедиться что поиск произошел по выбранному городу
     public void testH2Header_WhenSearchingCityCountry() {
         final String cityName = "Paris";
         final String expectedCityCountryNames = "Paris, FR";
