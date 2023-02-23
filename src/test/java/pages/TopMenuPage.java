@@ -8,11 +8,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public abstract class TopMenuPage extends BasePage{
     @FindBy(xpath = "//div[@id='desktop-menu']//a[text()='Guide']")
-    private WebElement menuGuide;
+    private WebElement menuGuideTopMenu;
     final By TOP_GUIDE =By.xpath("//div[@id='desktop-menu']//a[text()='Guide']");
 
     public GuidePage clickGuideMenu(){
-        click(menuGuide);
+        click(menuGuideTopMenu);
         return new GuidePage(getDriver());
     }
     public GuidePage clickByGuideMenu(){

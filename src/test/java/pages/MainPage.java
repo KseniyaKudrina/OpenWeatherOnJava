@@ -62,6 +62,9 @@ public class MainPage extends FooterMenuPage {
     @FindBy(xpath = "//div[@class='social']//img[@src='/themes/openweathermap/assets/img/owm_icons/icon_github.png']")
     private WebElement gitIconFooterMenu;
 
+    @FindBy(xpath = "//div[@id='desktop-menu']//a[@href='/api']")
+    private WebElement menuAPITopMenu;
+
 
 
 
@@ -164,6 +167,9 @@ public class MainPage extends FooterMenuPage {
     public String getCityCountryName() {
 
         return getText(h2CityCountryHeader);
+    }
+    public void clickAPITopMenu(){
+        click(menuAPITopMenu);
     }
 
 }

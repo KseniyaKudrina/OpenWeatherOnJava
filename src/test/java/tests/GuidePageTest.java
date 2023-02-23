@@ -19,7 +19,6 @@ public class GuidePageTest extends BaseTest {
         final int countButtonsLearnMore = 5;
         openBaseURL();
         click(By.xpath("//div[@id='desktop-menu']//a[text()='Guide']"));
-        //TopMenuPage topMenuPage = new TopMenuPage(getDriver());
 
         List<WebElement> list = getDriver().
                 findElements(By.xpath("//div[@class='col-sm-12']//a[@class='ow-btn round btn-orange']"));

@@ -3,7 +3,6 @@ package tests;
 import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.FooterMenuPage;
 import pages.MainPage;
 
 public class FooterMenuTest extends BaseTest {
