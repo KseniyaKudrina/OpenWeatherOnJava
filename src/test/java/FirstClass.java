@@ -17,20 +17,10 @@ public class FirstClass extends BaseTest {
     final By SUPPORT_DROPDOWN = By.id("support-dropdown");
     final By ASC_A_QUESTION_MENU_DROPDOWN = By.xpath("//li[@class='with-dropdown']//a[contains(@href,'https://home.openweathermap.org/questions')]");
     final By DIFFERENT_WEATHER_BUTTON = By.xpath("//div[@id='weather-widget']//span[@class='control-el owm-switch']");
-    final By PRICING_BUTTON = By.linkText("Pricing");
     final By DROP_DOWN_MORE_OPTIONS = By.xpath("//div[@class='more-options']");
     final By DIFFERENT_WEATHER_POP_UP_CONTAINER = By.xpath("//div[@class='pop-up-container']");
     final By DIFFERENT_WEATHER_DD_MORE_OPTIONS_DD_SELECTOR = By.xpath("//div[@class='dropdown-selector']");
 
-
-    @Test
-    public void testOpenPage(){
-
-        String nameCopyright = "© 2012 — 2023 OpenWeather ® All rights reserved";
-        openBaseURL();
-
-        Assert.assertEquals(getText(FOOTER_NAME_COMPANY),nameCopyright);
-    }
 
     @Test
     public void testSelectAscAQuestion() throws InterruptedException {
@@ -74,15 +64,6 @@ public class FirstClass extends BaseTest {
         String bgColorAfterBefore = differentWeatherButton.getCssValue("background-color");
 
         Assert.assertNotEquals(bgColorAfter,bgColorAfterBefore);
-    }
-    @Test //кликнуть по PRICING_BUTTON и подтвердить переход на другую вкладку
-    public void testOpenNewPage_ClickHowToBuy(){
-        final String homePageTitle = "Сurrent weather and forecast";
-        openBaseURL();
-        waitElementToBeVisible(PRICING_BUTTON);
-        click(PRICING_BUTTON);
-
-        Assert.assertNotEquals(homePageTitle,getDriver().getTitle());
     }
     @Test
     public void testListElementsDropDown(){

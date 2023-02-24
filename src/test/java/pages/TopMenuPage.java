@@ -14,6 +14,9 @@ public abstract class TopMenuPage extends BasePage{
     @FindBy(xpath = "//li[@class='user-li']//a")
     private WebElement singInTopMenu;
 
+    @FindBy(linkText = "Pricing")
+    private WebElement pricingTopMenu;
+
     public TopMenuPage(WebDriver driver) {
         super(driver);
     }
@@ -28,6 +31,10 @@ public abstract class TopMenuPage extends BasePage{
     public HomeSignInPage clickSignInTopMenu(){
         click(singInTopMenu);
         return new HomeSignInPage(getDriver());
+    }
+    public PricingPage clickByPricingMenu(){
+        click(pricingTopMenu);
+        return new PricingPage(getDriver());
     }
 
 
