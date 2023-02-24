@@ -8,7 +8,7 @@ import pages.MainPage;
 
 public class APIPageTest extends BaseTest {
     @Test //количество кнопок "APIDoc" на странице API должно == 23
-    public void testClickLinksAPIDoc(){
+    public void testCountLinksAPIDoc(){
         final int countButtonsAPIDocs = 23;
         openBaseURL();
         MainPage mainPage = new MainPage(getDriver());
@@ -17,8 +17,7 @@ public class APIPageTest extends BaseTest {
         APIPage apiPage = new APIPage(getDriver());
 
         Assert.assertEquals(countButtonsAPIDocs,  apiPage.getCountWebElementsAPIDocsLinks());
-
-
-
     }
+
+
 }

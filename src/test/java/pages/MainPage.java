@@ -64,6 +64,8 @@ public class MainPage extends FooterMenuPage {
 
     @FindBy(xpath = "//div[@id='desktop-menu']//a[@href='/api']")
     private WebElement menuAPITopMenu;
+    @FindBy(css = "a[href*='/'],a[href*='#']")
+    private List<WebElement> allLinks;
 
 
 
@@ -170,6 +172,19 @@ public class MainPage extends FooterMenuPage {
     }
     public void clickAPITopMenu(){
         click(menuAPITopMenu);
+    }
+    public List<String> getAllLinks() {
+        List<String> linksList = new ArrayList<>();
+
+        for (WebElement link : allLinks) {
+            linksList.add(getAttribute(link, "href"));
+        }
+
+        return linksList;
+    }
+    public String getClassAttribute(WebElement element) {
+
+        return getAttribute(element, "class");
     }
 
 }

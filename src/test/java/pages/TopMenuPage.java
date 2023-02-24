@@ -11,6 +11,12 @@ public abstract class TopMenuPage extends BasePage{
     private WebElement menuGuideTopMenu;
     final By TOP_GUIDE =By.xpath("//div[@id='desktop-menu']//a[text()='Guide']");
 
+    @FindBy(xpath = "//li[@class='user-li']//a")
+    private WebElement singInTopMenu;
+
+    public TopMenuPage(WebDriver driver) {
+        super(driver);
+    }
     public GuidePage clickGuideMenu(){
         click(menuGuideTopMenu);
         return new GuidePage(getDriver());
@@ -19,8 +25,10 @@ public abstract class TopMenuPage extends BasePage{
         clickBy(TOP_GUIDE);
         return new GuidePage(getDriver());
     }
-
-    public TopMenuPage(WebDriver driver) {
-        super(driver);
+    public HomeSignInPage clickSignInTopMenu(){
+        click(singInTopMenu);
+        return new HomeSignInPage(getDriver());
     }
+
+
 }
