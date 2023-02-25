@@ -27,23 +27,28 @@ public class APIPage extends FooterMenuPage{
         return count;
     }
 
-    /*public List<String> getClickAPIDocsLinks() {
+    public List<String> getAPIDocsLinks() {
 
         List<WebElement> list = getDriver().
                 findElements(By.xpath("//div[@class='container']//a[text()='API doc']"));
+        List<String> strings = new ArrayList<>();
+        for (WebElement element : list){
+            strings.add(element.getAttribute("href"));
+            getWait().until(ExpectedConditions.elementToBeClickable(element));
+            element.click();
+            strings.add(getDriver().getTitle());
+            getDriver().navigate().back();
+
+        } System.out.println(strings);
+        return strings;
+    }
+    /*public List<String> clickAPIDocsLinks(List<String> linksElements){
         List<String> titlePages = new ArrayList<>();
-        for (int i = 0; i < list.size()-1; i++){
-            list.get(i).click();
+        for (WebElement element : linksElements){
+            element.click();
             titlePages.add(getDriver().getTitle());
             getDriver().navigate().back();
-            getWait().until(ExpectedConditions.visibilityOfAllElements(list));
-
-            list = getDriver().
-                    findElements(By.xpath("//div[@class='container']//a[text()='API doc']"));
-
-        } System.out.println(titlePages);
-        return titlePages;
-
+        }return titlePages;
     }*/
 
 

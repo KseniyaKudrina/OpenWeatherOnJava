@@ -46,25 +46,7 @@ public class FirstClass extends BaseTest {
         //Переключаемся назад к первоначальному окну
         getDriver().switchTo().window(winHandleBefore);
     }
-    @Test
-    public void testChangeBGColor_DifferentWeatherButton() throws InterruptedException {
 
-        openBaseURL();
-
-        WebElement differentWeatherButton = getDriver().findElement(By.xpath(
-                "//div[@id='weather-widget']//span[@class='control-el owm-switch']"
-        ));
-        Actions builder = new Actions(getDriver());
-        Action mouseOverHome = builder
-                .moveToElement(differentWeatherButton)
-                .build();
-
-        String bgColorAfter = differentWeatherButton.getCssValue("background-color");
-        mouseOverHome.perform();
-        String bgColorAfterBefore = differentWeatherButton.getCssValue("background-color");
-
-        Assert.assertNotEquals(bgColorAfter,bgColorAfterBefore);
-    }
     @Test
     public void testListElementsDropDown(){
         openBaseURL();

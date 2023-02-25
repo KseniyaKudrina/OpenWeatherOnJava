@@ -1,6 +1,10 @@
 package tests;
 
 import base.BaseTest;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.MainPage;
@@ -57,6 +61,25 @@ public class MainTest extends BaseTest {
         String newCityCountryNames = mainPage.getCityCountryName();
         Assert.assertEquals(newCityCountryNames, expectedCityCountryNames);
 
+    }
+    @Test
+    public void testChangeBGColor_DifferentWeatherButton() {
+
+        openBaseURL();
+
+        WebElement differentWeatherButton = getDriver().findElement(By.xpath(
+                "//div[@id='weather-widget']//span[@class='control-el owm-switch']"
+        ));
+        Actions builder = new Actions(getDriver());
+        Action mouseOverHome = builder
+                .moveToElement(differentWeatherButton)
+                .build();
+
+        String bgColorAfter = differentWeatherButton.getCssValue("background-color");
+        mouseOverHome.perform();
+        String bgColorAfterBefore = differentWeatherButton.getCssValue("background-color");
+
+        Assert.assertNotEquals(bgColorAfter,bgColorAfterBefore);
     }
 
 }

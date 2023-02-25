@@ -95,6 +95,9 @@ public abstract class BaseTest {
         List<WebElement> list = driver.findElements(By.xpath(text));
         return list;
     }
+    public void getCurrentURL(){
+        getDriver().getCurrentUrl();
+    }
 
 
 

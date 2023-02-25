@@ -13,9 +13,11 @@ public abstract class TopMenuPage extends BasePage{
 
     @FindBy(xpath = "//li[@class='user-li']//a")
     private WebElement singInTopMenu;
-
     @FindBy(linkText = "Pricing")
     private WebElement pricingTopMenu;
+
+    @FindBy(xpath = "//div[@id='desktop-menu']//a[text()='Maps']")
+    private WebElement mapsTopMenu;
 
     public TopMenuPage(WebDriver driver) {
         super(driver);
@@ -35,6 +37,10 @@ public abstract class TopMenuPage extends BasePage{
     public PricingPage clickByPricingMenu(){
         click(pricingTopMenu);
         return new PricingPage(getDriver());
+    }
+    public MapsPage clickByMapsMenu(){
+        click(mapsTopMenu);
+        return new MapsPage(getDriver());
     }
 
 

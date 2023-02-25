@@ -54,7 +54,7 @@ public abstract class BasePage {
         getWait().until(ExpectedConditions.elementToBeClickable(by)).click();
     }
     protected void input(String text, WebElement element){
-        element.sendKeys();
+        element.sendKeys(text);
     }
     protected void waitElementToBeVisible(WebElement element){
         getWait().until(ExpectedConditions.visibilityOf(element));
