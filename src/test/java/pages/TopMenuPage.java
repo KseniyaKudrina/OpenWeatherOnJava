@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public abstract class TopMenuPage extends BasePage{
     @FindBy(xpath = "//div[@id='desktop-menu']//a[text()='Guide']")
@@ -18,6 +17,8 @@ public abstract class TopMenuPage extends BasePage{
 
     @FindBy(xpath = "//div[@id='desktop-menu']//a[text()='Maps']")
     private WebElement mapsTopMenu;
+    @FindBy(xpath = "//div[@id='desktop-menu']//li[@class='user-li']/a")
+    private WebElement signInTopMenu;
 
     public TopMenuPage(WebDriver driver) {
         super(driver);
@@ -42,6 +43,25 @@ public abstract class TopMenuPage extends BasePage{
         click(mapsTopMenu);
         return new MapsPage(getDriver());
     }
+    public HomeUsersSignInPage clickSignInMenu() {
+        click(signInTopMenu);
+
+        return new HomeUsersSignInPage(getDriver());
+    }
+
+    public HomePage signIn() {
+        clickSignInMenu().signInAsRegularUser();
+
+        return new HomePage(getDriver());
+    }
+
+    public HomeUsersSignInPage signOut() {
+        click(getDriver().findElement(By.id("user-dropdown")));
+        click(getDriver().findElement(By.xpath("//a[@href='/users/sign_out']")));
+
+        return new HomeUsersSignInPage(getDriver());
+    }
+
 
 
 }

@@ -16,7 +16,20 @@ public class MapsPageTest extends BaseTest {
         MapsPage mapsPage = new MapsPage(getDriver());
         mapsPage.clickCheckboxCities();
         Assert.assertTrue(mapsPage.checkboxOffCities());
+    }
+    @Test
+    public void testSelectCity(){
+        final String searchCity = "erie";
+
+        openBaseURL().clickByMapsMenu();
+        MapsPage mapsPage = new MapsPage(getDriver());
+        mapsPage.clickNominatimSearch();
+        mapsPage.clickNominatimSearchField();
+        mapsPage.inputSearchCriteria(searchCity);
+
+        //Assert.assertTrue(mapsPage.nominatimSearchCityErie());
 
     }
+
 
 }
