@@ -28,7 +28,7 @@ public class HomeSignInTest extends BaseTest {
         System.out.println(openBaseURL().signIn().getText());
     }
 
-    @Test
+    @Test // авторизация с неправильным Email или паролем
     public void testLogInWithInvalidPassword() {
         final String expectedNoticeMessage = "Invalid Email or password.";
         final String expectedSignInMenuText = "Sign In";
