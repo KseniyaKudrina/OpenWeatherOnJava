@@ -7,6 +7,9 @@ import org.testng.annotations.Test;
 import pages.APIPage;
 import pages.MainPage;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class APIPageTest extends BaseTest {
@@ -21,12 +24,24 @@ public class APIPageTest extends BaseTest {
 
         Assert.assertEquals(countButtonsAPIDocs,  apiPage.getCountWebElementsAPIDocsLinks());
     }
-    @Test
-    public void testClickAPIDocsLink(){
+    @Test // прокликать лист ссылко APIDocs
+    public void testClickListAPIDocsLink(){
+        List<String> as = Arrays.asList("One Call API 3.0 - OpenWeatherMap", "Current weather data - OpenWeatherMap",
+                "Hourly Weather Forecast 4 days - OpenWeatherMap", "Daily Forecast 16 Days - OpenWeatherMap",
+                "Climate forecast for 30 days - OpenWeatherMap", "Bulk downloading: Current and forecast weather data - OpenWeatherMap",
+                "5 day weather forecast - OpenWeatherMap", "Historical weather API - OpenWeatherMap",
+                "History API by timestamp - OpenWeatherMap", "History API Full Archive - OpenWeatherMap",
+                "Statistical Weather Data API - OpenWeatherMap", "Accumulated parameters: accumulated temperature and accumulated precipitation - OpenWeatherMap",
+                "Weather maps - OpenWeatherMap", "Weather map 1h - OpenWeatherMap", "Weather maps 1.0 - OpenWeatherMap",
+                "Global precipitation map - OpenWeatherMap", "Global Precipitation Map Forecast - OpenWeatherMap",
+                "Relief maps - OpenWeatherMap", "Air Pollution - OpenWeatherMap", "Geocoding API - OpenWeatherMap",
+                "Weather Stations - OpenWeatherMap", "UV Index - OpenWeatherMap", "Weather Alerts. Weather Triggers API - OpenWeatherMap");
+
         openBaseURL().clickAPITopMenu();
         APIPage apiPage = new APIPage(getDriver());
-        List<String> listLinksAPI = new APIPage(getDriver()).getAPIDocsLinks();
-        System.out.println(listLinksAPI);
+        apiPage.getAPIDocsLinks();
+
+        Assert.assertEquals(as, apiPage.getAPIDocsLinks());
 
     }
 
