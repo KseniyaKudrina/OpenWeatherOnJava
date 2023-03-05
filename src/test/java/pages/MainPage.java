@@ -186,6 +186,11 @@ public class MainPage extends FooterMenuPage {
 
         return getAttribute(element, "class");
     }
+    public MainPage inputSearchData(String text) {
+        input(text, searchCityField);
+
+        return this;
+    }
 
 
 }

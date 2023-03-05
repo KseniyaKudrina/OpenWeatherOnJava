@@ -4,6 +4,7 @@ import api.CaptureNetworkTraffic;
 import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.MainPage;
 
 import java.util.List;
 
@@ -43,4 +44,29 @@ public class API_MainTest extends BaseTest{
         }
         Assert.assertTrue(Double.parseDouble(responses.get(3).substring(10, 14)) <= 3);
     }
+    @Test
+    public void test_API_CNTRequests_WhenSearchingCityCountry() {
+        List<String> requestsSearchButton = new CaptureNetworkTraffic()
+                .setUpDevTool(getDriver())
+                .captureHttpRequestsContain("weather");
+
+                openBaseURL()
+                .clickSearchCityField();
+                MainPage mainPage = new MainPage(getDriver());
+                mainPage.inputSearchData("Paris")
+                .clickSearchButton();
+
+        Assert.assertNotNull(requestsSearchButton);
+        Assert.assertEquals(requestsSearchButton.get(requestsSearchButton.size() - 2), "GET");
+        Assert.assertTrue(requestsSearchButton.get(requestsSearchButton.size() - 1)
+                .contains("openweathermap.org/data/2.5/find?q=Paris"));
+
+        mainPage.clickParisInDropDownList();
+
+        Assert.assertNotNull(requestsSearchButton);
+        Assert.assertEquals(requestsSearchButton.get(requestsSearchButton.size() - 2), "GET");
+        Assert.assertTrue(requestsSearchButton.get(requestsSearchButton.size() - 1)
+                .contains("openweathermap.org/data/2.5/onecall?lat=48.8534&lon=2.3488"));
+    }
+
 }
