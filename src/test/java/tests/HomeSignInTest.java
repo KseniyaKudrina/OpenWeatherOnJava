@@ -4,7 +4,7 @@ import base.BaseTest;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.HomeUsersSignInPage;
+import pages.home.HomeUsersSignInPage;
 
 public class HomeSignInTest extends BaseTest {
     @Test //регистрация с вводом данных

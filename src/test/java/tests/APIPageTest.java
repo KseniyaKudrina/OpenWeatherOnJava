@@ -21,7 +21,7 @@ public class APIPageTest extends BaseTest {
 
         Assert.assertEquals(countButtonsAPIDocs,  apiPage.getCountWebElementsAPIDocsLinks());
     }
-    @Test // прокликать лист ссылко APIDocs
+    @Test // прокликать лист ссылок APIDocs
     public void testClickListAPIDocsLink(){
         List<String> as = Arrays.asList("One Call API 3.0 - OpenWeatherMap", "Current weather data - OpenWeatherMap",
                 "Hourly Weather Forecast 4 days - OpenWeatherMap", "Daily Forecast 16 Days - OpenWeatherMap",

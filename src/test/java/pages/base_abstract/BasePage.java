@@ -1,4 +1,4 @@
-package pages;
+package pages.base_abstract;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +7,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.home.HomePage;
+import pages.home.HomeUsersSignInPage;
 
 import java.time.Duration;
 import java.util.ArrayList;

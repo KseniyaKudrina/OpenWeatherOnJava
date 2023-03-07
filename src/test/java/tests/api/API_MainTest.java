@@ -1,5 +1,6 @@
 package tests.api;
 
+import api.Alert;
 import api.CaptureNetworkTraffic;
 import base.BaseTest;
 import org.testng.Assert;
@@ -64,9 +65,9 @@ public class API_MainTest extends BaseTest{
         mainPage.clickParisInDropDownList();
 
         Assert.assertNotNull(requestsSearchButton);
+        System.out.println(requestsSearchButton);
         Assert.assertEquals(requestsSearchButton.get(requestsSearchButton.size() - 2), "GET");
         Assert.assertTrue(requestsSearchButton.get(requestsSearchButton.size() - 1)
                 .contains("openweathermap.org/data/2.5/onecall?lat=48.8534&lon=2.3488"));
     }
-
 }

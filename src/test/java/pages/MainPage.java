@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
+import pages.base_abstract.FooterMenuPage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +67,9 @@ public class MainPage extends FooterMenuPage {
     @FindBy(css = "a[href*='/'],a[href*='#']")
     private List<WebElement> allLinks;
 
+    @FindBy(xpath = "//div[@class = 'weather-alert']")
+    private WebElement weatherAlert;
+
 
 
 
@@ -111,6 +114,10 @@ public class MainPage extends FooterMenuPage {
     public String getTextWait() {
         getWait().until(ExpectedConditions.elementToBeClickable(unitsF));
         return getText(unitsF);
+    }
+    public String getWeatherAlertText() {
+        getWait().until(ExpectedConditions.visibilityOf(weatherAlert));
+        return getText(weatherAlert);
     }
     public String getCurrentURL() {
         return getDriver().getCurrentUrl();

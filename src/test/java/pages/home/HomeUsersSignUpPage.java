@@ -1,10 +1,11 @@
-package pages;
+package pages.home;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.base_abstract.FooterMenuPage;
 
-public class HomeUsersSignUpPage extends FooterMenuPage{
+public class HomeUsersSignUpPage extends FooterMenuPage {
 
     @FindBy(xpath = "//input[@id='user_username']")
     private WebElement usernameField;

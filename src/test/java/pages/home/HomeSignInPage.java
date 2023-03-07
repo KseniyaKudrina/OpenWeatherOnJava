@@ -1,10 +1,11 @@
-package pages;
+package pages.home;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.base_abstract.FooterMenuPage;
 
-public class HomeSignInPage extends FooterMenuPage{
+public class HomeSignInPage extends FooterMenuPage {
     private String email = "jka59433@xcoxc.com";
     private String password = "Tester12#";
     @FindBy(id = "user_email")

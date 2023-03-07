@@ -3,12 +3,12 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.base_abstract.FooterMenuPage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class APIPage extends FooterMenuPage{
+public class APIPage extends FooterMenuPage {
 
     public APIPage(WebDriver driver) {
         super(driver);

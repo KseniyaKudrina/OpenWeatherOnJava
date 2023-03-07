@@ -1,11 +1,18 @@
-package pages;
+package pages.base_abstract;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.GuidePage;
+import pages.MapsPage;
+import pages.PricingPage;
+import pages.base_abstract.BasePage;
+import pages.home.HomePage;
+import pages.home.HomeSignInPage;
+import pages.home.HomeUsersSignInPage;
 
-public abstract class TopMenuPage extends BasePage{
+public abstract class TopMenuPage extends BasePage {
     @FindBy(xpath = "//div[@id='desktop-menu']//a[text()='Guide']")
     private WebElement menuGuideTopMenu;
     final By TOP_GUIDE =By.xpath("//div[@id='desktop-menu']//a[text()='Guide']");

@@ -1,10 +1,11 @@
-package pages;
+package pages.home;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.base_abstract.FooterMenuPage;
 
-public class HomeUsersSignInPage extends FooterMenuPage{
+public class HomeUsersSignInPage extends FooterMenuPage {
     public HomeUsersSignInPage(WebDriver driver) {
         super(driver);
     }
