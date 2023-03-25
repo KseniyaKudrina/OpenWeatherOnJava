@@ -64,6 +64,7 @@ public final class BaseUtils {
     }
 
     static WebDriver createDriver() {
+        System.setProperty("webdriver.http.factory", "jdk-http-client");
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
