@@ -69,14 +69,13 @@ public class MainPage extends FooterMenuPage {
 
     @FindBy(xpath = "//div[@class = 'weather-alert']")
     private WebElement weatherAlert;
+    @FindBy(id = "support-dropdown")
+    private WebElement support_Dropdown;
+    @FindBy(xpath = ("//li[@class='with-dropdown']//a[contains(@href,'https://home.openweathermap.org/questions')]"))
+    private WebElement ascAQuestionMenuDropdown;
 
-
-
-
-    /*final By ASC_A_QUESTION_MENU_DROPDOWN = By.
-            xpath("//li[@class='with-dropdown']//a[contains(@href,'https://home.openweathermap.org/questions')]");
-    final By PRICING_BUTTON = By.linkText("Pricing");*/
-
+    final By DIFFERENT_WEATHER_POP_UP_CONTAINER = By.xpath("//div[@class='pop-up-container']");
+    final By DIFFERENT_WEATHER_DD_MORE_OPTIONS_DD_SELECTOR = By.xpath("//div[@class='dropdown-selector']");
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -162,6 +161,22 @@ public class MainPage extends FooterMenuPage {
     public void clickSearchButton(){
         click(searchButton);
     }
+    public void clickSupport_Dropdown(){
+        click(support_Dropdown);
+    }
+    public void clickAscAQuestionMenuDropdown(){
+        click(ascAQuestionMenuDropdown);
+    }
+    public void clickDifferentWeatherButton(){
+        click(differentWeatherButton);
+    }
+    public void clickDropDownMoreOptions(){
+        click(dropDownMoreOptions);
+    }
+    public void clickDifferentWeatherDdMoreOptionsDdSelector(){
+        click(differentWeatherDdMoreOptionsDdSelector);
+    }
+
     public MainPage clickParisInDropDownList() {
         getWait().until(ExpectedConditions.visibilityOf(searchDropdownMenu));
         click(parisFRChoiceInDropdownMenu);
@@ -188,10 +203,6 @@ public class MainPage extends FooterMenuPage {
         }
 
         return linksList;
-    }
-    public String getClassAttribute(WebElement element) {
-
-        return getAttribute(element, "class");
     }
     public MainPage inputSearchData(String text) {
         input(text, searchCityField);

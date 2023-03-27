@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.MainPage;
@@ -80,6 +81,47 @@ public class MainTest extends BaseTest {
         String bgColorAfterBefore = differentWeatherButton.getCssValue("background-color");
 
         Assert.assertNotEquals(bgColorAfter,bgColorAfterBefore);
+    }
+    @Test
+    public void testSelectAscAQuestion() throws InterruptedException {
+
+        openBaseURL()
+                .clickSupport_Dropdown();
+        new MainPage(getDriver()).clickAscAQuestionMenuDropdown();
+
+        String winHandleBefore = getDriver().getWindowHandle();
+
+        //Переключаемся на новое окно
+        for(String winHandle : getDriver().getWindowHandles()){
+            getDriver().switchTo().window(winHandle);
+        }
+
+        Select SubjectField = new Select(getDriver().findElement(By.
+                xpath("//div[@class='col-sm-8']/select[@id='question_form_subject']")));
+        SubjectField.selectByIndex(2);
+
+        //Закрываем новое окно
+        getDriver().close();
+        //Переключаемся назад к первоначальному окну
+        getDriver().switchTo().window(winHandleBefore);
+    }
+    @Test // перейти в раздел DropDownMoreOptions и кликнуть на Personal feelings
+    public void testListElementsDropDown(){
+        openBaseURL().clickDifferentWeatherButton();
+
+        MainPage mainPage = new MainPage(getDriver());
+
+        mainPage.clickDropDownMoreOptions();
+        mainPage.clickDifferentWeatherDdMoreOptionsDdSelector();
+
+        List <WebElement> list = getDriver().findElements(By.xpath("//ul[@class='dropdown-menu']/*"));
+        List <String> textElements = new ArrayList<>();
+        for(WebElement element : list){
+            textElements.add(element.getText());
+        }
+        System.out.println(textElements);
+        list.get(3).click();
+
     }
 
 }
