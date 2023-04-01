@@ -1,6 +1,6 @@
 package tests.api;
 
-import api.Alert;
+
 import api.CaptureNetworkTraffic;
 import base.BaseTest;
 import org.testng.Assert;

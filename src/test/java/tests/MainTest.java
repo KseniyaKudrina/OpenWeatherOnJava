@@ -15,7 +15,7 @@ import java.util.List;
 
 public class MainTest extends BaseTest {
 
-    @Test
+    @Test // корректность копирайта
     public void testOpenPage(){
 
         String nameCopyright = "© 2012 — 2023 OpenWeather ® All rights reserved";
@@ -63,7 +63,7 @@ public class MainTest extends BaseTest {
         Assert.assertEquals(newCityCountryNames, expectedCityCountryNames);
 
     }
-    @Test
+    @Test // при наведении на DifferentWeather меняется цвет
     public void testChangeBGColor_DifferentWeatherButton() {
 
         openBaseURL();
@@ -82,7 +82,7 @@ public class MainTest extends BaseTest {
 
         Assert.assertNotEquals(bgColorAfter,bgColorAfterBefore);
     }
-    @Test
+    @Test // перейти в раздел Asc A Question и выбрать 2 пункт из списка типа вопросов
     public void testSelectAscAQuestion() throws InterruptedException {
 
         openBaseURL()

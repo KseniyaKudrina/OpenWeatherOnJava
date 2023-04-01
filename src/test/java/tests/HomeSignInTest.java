@@ -15,7 +15,7 @@ public class HomeSignInTest extends BaseTest {
                 .clickClearInputPassword()
                 .clickSubmitButton();
     }
-    @Test
+    @Test // выход из аккаунта
     public void testSignOut(){
         if(getDriver().findElement(By.id("user-dropdown")).isDisplayed()){
             getDriver().findElement(By.id("user-dropdown")).click();
