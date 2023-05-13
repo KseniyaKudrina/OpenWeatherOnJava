@@ -38,7 +38,38 @@ public class ReqresTest {
     public void testSuccsesRegistrationPOST(){
         Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseSpecification200());
 
+        Integer id = 4;
+        String token = "QpwL5tke4Pnpja7X4";
 
+        Register user = new Register("eve.holt@reqres.in", "pistol");
+
+        SuccessRegistration successRegistration = given()
+                .body(user)
+                .when()
+                .post("api/register")
+                .then().log().all()
+                .extract().as(SuccessRegistration.class);
+
+        Assert.assertNotNull(successRegistration.getId());
+        Assert.assertNotNull(successRegistration.getToken());
+
+        Assert.assertEquals(id, successRegistration.getId());
+        Assert.assertEquals(token, successRegistration.getToken());
+    }
+
+    @Test
+    public void testUnSuccsesRegistrationPOST(){
+        Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseSpecificationError400());
+
+        Register user = new Register("fvffv@bhjdc", "");
+
+        UnSuccessRegistration unSuccessRegistration = given()
+                .body(user)
+                .post("api/register")
+                .then().log().all()
+                .extract().as(UnSuccessRegistration.class);
+
+        Assert.assertEquals("Missing password", unSuccessRegistration.getError());
     }
 
 
