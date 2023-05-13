@@ -59,12 +59,12 @@ public class PricingPageTest extends BaseTest {
             System.out.println(url);
 
             if(url == null || url.isEmpty()){
-                System.out.println("URL is either not configured for anchor tag or it is empty"); // URL пустой или не привязан
+                System.out.println("URL пустой или не привязан"); // URL пустой или не привязан
                 continue;
             }
 
             if(!url.startsWith(BURL)){ // не начинается с BaseURL
-                System.out.println("URL belongs to another domain, skipping it.");
+                System.out.println("не начинается с BaseURL");
                 continue;
             }
 

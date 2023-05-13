@@ -1,5 +1,6 @@
-package api_Reqres_in;
+package tests.api;
 
+import api_Reqres_in.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -117,10 +118,6 @@ public class ReqresTest {
         Assert.assertEquals(expectedJob, responseBody.getJob());
 
     }
-
-
-
-
 
 
 
