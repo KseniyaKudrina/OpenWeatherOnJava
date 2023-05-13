@@ -1,15 +1,6 @@
-package api;
+package api_Reqres_in;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v104.network.Network;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-public class CaptureNetworkTraffic {
+public class CaptureNetworkTraffic {/*
 
     DevTools devTools;
 
@@ -60,5 +51,5 @@ public class CaptureNetworkTraffic {
                 });
 
         return response;
-    }
+    }*/
 }

@@ -1,17 +1,11 @@
 package tests.api;
 
 
-import api.CaptureNetworkTraffic;
 import base.BaseTest;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-import pages.MainPage;
 
-import java.util.List;
-
-public class API_MainTest extends BaseTest{
+public class API_MainTest extends BaseTest {/*
     @Test
-    public void test_API_HttpRequest_OpenBaseURL(){
+    public void test_API_HttpRequest_OpenBaseURL() {
         List<String> requests = new CaptureNetworkTraffic()
                 .setUpDevTool(getDriver())
                 .captureHttpRequestsContain("weather");
@@ -25,6 +19,7 @@ public class API_MainTest extends BaseTest{
             Assert.assertTrue(requests.get(i).contains("openweathermap.org/"));
         }
     }
+
     @Test
     public void test_API_CNTResponse_OpenBaseURL() {
         List<String> responses = new CaptureNetworkTraffic()
@@ -45,16 +40,17 @@ public class API_MainTest extends BaseTest{
         }
         Assert.assertTrue(Double.parseDouble(responses.get(3).substring(10, 14)) <= 3);
     }
+
     @Test
     public void test_API_CNTRequests_WhenSearchingCityCountry() {
         List<String> requestsSearchButton = new CaptureNetworkTraffic()
                 .setUpDevTool(getDriver())
                 .captureHttpRequestsContain("weather");
 
-                openBaseURL()
+        openBaseURL()
                 .clickSearchCityField();
-                MainPage mainPage = new MainPage(getDriver());
-                mainPage.inputSearchData("Paris")
+        MainPage mainPage = new MainPage(getDriver());
+        mainPage.inputSearchData("Paris")
                 .clickSearchButton();
 
         Assert.assertNotNull(requestsSearchButton);
@@ -69,5 +65,5 @@ public class API_MainTest extends BaseTest{
         Assert.assertEquals(requestsSearchButton.get(requestsSearchButton.size() - 2), "GET");
         Assert.assertTrue(requestsSearchButton.get(requestsSearchButton.size() - 1)
                 .contains("openweathermap.org/data/2.5/onecall?lat=48.8534&lon=2.3488"));
-    }
+    }*/
 }

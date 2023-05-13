@@ -102,5 +102,6 @@ public class HomeUsersSignInPage extends FooterMenuPage {
             click(rememberMe);
         return this;
     }
+
 }
 
