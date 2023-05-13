@@ -87,8 +87,38 @@ public class ReqresTest {
         List<Integer> sortedYears = years.stream().sorted().collect(Collectors.toList());
 
         Assert.assertEquals(sortedYears, years);
+    }
+    @Test
+    public void testDellUserDELETE(){
+        Specifications.installSpecification(Specifications.requestSpec(URL),
+                Specifications.responseSpecificationUnique(204));
+        given()
+                .when()
+                .delete("api/users/2")
+                .then().log().all();
+    }
+
+    @Test
+    public void testCreateNewUserPOST(){
+        Specifications.installSpecification(Specifications.requestSpec(URL),
+                Specifications.responseSpecificationUnique(201));
+        String expectedName = "morpheus";
+        String expectedJob = "leader";
+
+        CreateNewUserRequestBody newUser = new CreateNewUserRequestBody("morpheus", "leader");
+        CreateNewUserResponseBody responseBody = given()
+                .body(newUser)
+                .when()
+                .post("api/users")
+                .then().log().all()
+                .extract().as(CreateNewUserResponseBody.class);
+
+        Assert.assertEquals(expectedName, responseBody.getName());
+        Assert.assertEquals(expectedJob, responseBody.getJob());
 
     }
+
+
 
 
 
