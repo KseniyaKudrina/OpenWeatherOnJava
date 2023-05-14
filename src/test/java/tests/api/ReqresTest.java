@@ -4,6 +4,7 @@ import api_Reqres_in.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,13 +29,6 @@ public class ReqresTest {
        users.forEach(x -> Assert.assertTrue(x.getAvatar().contains(x.getId().toString())));
        Assert.assertTrue(users.stream().allMatch(x -> x.getEmail().endsWith("@reqres.in")));
 
-       // через лист
-        /*List<String> avatars = users.stream().map(Alert::getAvatar).collect(Collectors.toList());
-        List<String> ids = users.stream().map(x -> x.getId().toString()).collect(Collectors.toList());
-        for(int i = 0; i<avatars.size(); i++){
-            Assert.assertTrue(avatars.get(i).contains(ids.get(i)));
-        }
-        */
     }
     @Test
     public void testSuccsesRegistrationPOST(){
