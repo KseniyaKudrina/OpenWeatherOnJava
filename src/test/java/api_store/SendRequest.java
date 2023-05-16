@@ -34,6 +34,26 @@ public class SendRequest {
         Assert.assertEquals(lastName, Response.getLast_name());
         Assert.assertEquals(companyId, Response.getCompany_id());
     }
+    @Test
+    @DisplayName("Добавление нового пользователя/заполнены только обязательные поля")
+    public void testAddNewUserPlusNotOptionalFields(){
+        responseSpecificationUnique(201);
+
+        String lastName = "Cherry"; //одно обязательное поле
+
+        SendRequest_CreateNewUserRequest sendRBody =
+                new SendRequest_CreateNewUserRequest(null,lastName,null);
+
+        SendRequest_CreateNewUserResponse Response =
+                given()
+                        .body(sendRBody)
+                        .when()
+                        .contentType(ContentType.JSON)
+                        .post(URL + "/api/users/")
+                        .then().extract().as(SendRequest_CreateNewUserResponse.class);
+
+        Assert.assertEquals(lastName, Response.getLast_name());
+    }
 
 
 }
