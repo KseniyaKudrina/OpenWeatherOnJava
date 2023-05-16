@@ -1,4 +1,4 @@
-package api_store;
+package tests.api;
 
 
 import org.json.JSONObject;

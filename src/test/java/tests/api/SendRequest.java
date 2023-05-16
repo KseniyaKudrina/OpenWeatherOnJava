@@ -1,9 +1,10 @@
-package api_store;
+package tests.api;
 
+import api_store.SendRequest_CreateNewUserRequest;
+import api_store.SendRequest_CreateNewUserResponse;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.DisplayName;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -13,7 +14,7 @@ import static io.restassured.RestAssured.given;
 public class SendRequest {
     private final static String URL = "https://send-request.me";
     @Test
-    //"Добавление нового пользователя/все поля заполнены"
+    //POST "Добавление нового пользователя/все поля заполнены"
     public void testAddNewUser(){
         responseSpecificationUnique(201);
 
@@ -37,7 +38,7 @@ public class SendRequest {
         Assert.assertEquals(companyId, Response.getCompany_id());
     }
     @Test
-    //"Добавление нового пользователя/заполнены только обязательные поля"
+    //POST "Добавление нового пользователя/заполнены только обязательные поля"
     public void testAddNewUserPlusNotOptionalFields(){
         responseSpecificationUnique(201);
 
@@ -58,7 +59,7 @@ public class SendRequest {
     }
 
     @Test
-    //Добавление нового пользователя с пустыми полями /проверка 422 кода"
+    //POST Добавление нового пользователя с пустыми полями /проверка 422 кода"
     public void testAddNewUserEmptyFields(){
         responseSpecificationUnique(422);
 
@@ -80,7 +81,6 @@ public class SendRequest {
         String msg = jsonPath.get("detail.msg").toString();
 
         Assert.assertTrue(msg.contains(expMSG));
-
     }
 
 
