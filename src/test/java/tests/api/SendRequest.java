@@ -1,5 +1,7 @@
 package tests.api;
 
+import api_Reqres_in.ColorsData;
+import api_store.GetUsers;
 import api_store.SendRequest_CreateNewUserRequest;
 import api_store.SendRequest_CreateNewUserResponse;
 import io.restassured.http.ContentType;
@@ -8,6 +10,10 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static api_Reqres_in.Specifications.responseSpecificationAndHeader;
 import static api_Reqres_in.Specifications.responseSpecificationUnique;
 import static io.restassured.RestAssured.given;
 
@@ -82,6 +88,29 @@ public class SendRequest {
 
         Assert.assertTrue(msg.contains(expMSG));
     }
+    @Test
+    // GET просмотр пользователей, лимит по умолчанию = 3
+    public void testGetUserList(){
+        responseSpecificationAndHeader(200);
+
+        Response response = given()
+                .when()
+                .contentType(ContentType.JSON)
+                .get(URL + "/api/users/")
+                .then()
+                .extract().response();
+
+        JsonPath jsonPath = response.jsonPath();
+        List<GetUsers> list = jsonPath.getList("data", GetUsers.class);
+        int count = list.size();
+
+        Assert.assertEquals(count, 3);
+
+        List<String>newList = list.stream().map(GetUsers::getLast_name).collect(Collectors.toList());
+
+        Assert.assertNotNull(newList);
+    }
+
 
 
 }

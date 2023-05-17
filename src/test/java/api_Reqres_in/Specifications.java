@@ -31,6 +31,12 @@ public class Specifications {
                 .expectStatusCode(status)
                 .build();
     }
+    public static ResponseSpecification responseSpecificationAndHeader(int status){
+        return new ResponseSpecBuilder()
+                .expectStatusCode(status)
+                .expectHeader("Connection", "keep-alive")
+                .build();
+    }
 
     public static void installSpecification(RequestSpecification request, ResponseSpecification response){
         RestAssured.requestSpecification = request;
