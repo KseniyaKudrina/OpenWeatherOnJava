@@ -1,6 +1,5 @@
 package tests.api;
 
-import api_Reqres_in.ColorsData;
 import api_store.GetUsers;
 import api_store.SendRequest_CreateNewUserRequest;
 import api_store.SendRequest_CreateNewUserResponse;
@@ -8,6 +7,7 @@ import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
+
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -16,6 +16,8 @@ import java.util.stream.Collectors;
 import static api_Reqres_in.Specifications.responseSpecificationAndHeader;
 import static api_Reqres_in.Specifications.responseSpecificationUnique;
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.is;
 
 public class SendRequest {
     private final static String URL = "https://send-request.me";
@@ -109,6 +111,18 @@ public class SendRequest {
         List<String>newList = list.stream().map(GetUsers::getLast_name).collect(Collectors.toList());
 
         Assert.assertNotNull(newList);
+    }
+    @Test
+    // GET запрос с ошибкой limit и ofset текстовое значение
+    public void testGetUserListValidationError(){
+        responseSpecificationAndHeader(422);
+
+        given()
+                .when()
+                .contentType(ContentType.JSON)
+                .get(URL + "/api/users/?limit=mvmncv&offset=nvnnbngnb")
+                .then()
+                .and().body("detail.msg[0]", is ("value is not a valid integer"));
     }
 
 
