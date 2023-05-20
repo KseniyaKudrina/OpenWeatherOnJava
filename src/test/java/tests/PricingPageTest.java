@@ -11,9 +11,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class PricingPageTest extends BaseTest {
     @Test //кликнуть PricingMenu и подтвердить переход на другую вкладку
@@ -96,5 +94,25 @@ public class PricingPageTest extends BaseTest {
         getDriver().quit();
 
     }
+    @Test
+    public void testComparisonOfTableParameters(){
+
+        Map<String, String> expectedAtributes = new HashMap<>();
+        expectedAtributes.put(PricingPage.HISTORY_BULK, "40+ years back");
+        expectedAtributes.put(PricingPage.HISTORY_FORECAST_BULK, "5+ years back");
+        expectedAtributes.put(PricingPage.STARTER, "1 month back");
+        expectedAtributes.put(PricingPage.MEDIUM, "1 year back");
+        expectedAtributes.put(PricingPage.ADVANCED, "By request");
+
+        openBaseURL()
+                .clickByPricingMenu();
+        PricingPage pricingPage = new PricingPage(getDriver());
+        pricingPage
+                .getAtributes();
+        System.out.println();
+
+        Assert.assertEquals(pricingPage.getAtributes(), expectedAtributes);
+    }
+
 
 }

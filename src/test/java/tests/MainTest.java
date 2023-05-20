@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.MainPage;
+import pages.PricingPage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,7 +122,6 @@ public class MainTest extends BaseTest {
         }
         System.out.println(textElements);
         list.get(3).click();
-
     }
 
 }

@@ -77,6 +77,7 @@ public class MainPage extends FooterMenuPage {
     final By DIFFERENT_WEATHER_POP_UP_CONTAINER = By.xpath("//div[@class='pop-up-container']");
     final By DIFFERENT_WEATHER_DD_MORE_OPTIONS_DD_SELECTOR = By.xpath("//div[@class='dropdown-selector']");
 
+
     public MainPage(WebDriver driver) {
         super(driver);
     }
@@ -209,6 +210,7 @@ public class MainPage extends FooterMenuPage {
 
         return this;
     }
+
 
 
 }
